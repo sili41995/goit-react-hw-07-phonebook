@@ -1,5 +1,4 @@
 import React from 'react';
-import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from '@emotion/react';
 import ReactDOM from 'react-dom/client';
@@ -7,16 +6,14 @@ import './index.css';
 import App from 'components/App';
 import reportWebVitals from './reportWebVitals';
 import theme from 'constants/theme';
-import store, { persistor } from 'redux/store';
+import store from 'redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <App />
-        </PersistGate>
+        <App />
       </Provider>
     </ThemeProvider>
   </React.StrictMode>

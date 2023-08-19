@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
 import { Item } from './Contact.styled';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contacts/contactsSlice';
+import { deleteContact } from 'redux/contacts/operations';
+import { useRef } from 'react';
 
 const Contact = ({ name, number, id }) => {
+  const btnRef = useRef();
   const dispatch = useDispatch();
   const handleDelBtnClick = () => {
     dispatch(deleteContact(id));
+    btnRef.current.disabled = true;
   };
 
   return (
@@ -14,7 +17,7 @@ const Contact = ({ name, number, id }) => {
       <span>
         {name}: {number}
       </span>
-      <button type='button' onClick={handleDelBtnClick}>
+      <button type='button' ref={btnRef} id={id} onClick={handleDelBtnClick}>
         Delete
       </button>
     </Item>
